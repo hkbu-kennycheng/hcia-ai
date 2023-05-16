@@ -43,7 +43,7 @@ Deep Learning Frameworks are software libraries that are designed to make buildi
 
 [**JupyterLab**](https://jupyterlab.readthedocs.io/en/stable/) is the next-generation web-based user interface for Project Jupyter. JupyterLab enables you to work with documents and activities such as Jupyter notebooks, text editors, terminals, and custom components in a flexible, integrated, and extensible manner. You can arrange multiple documents and activities side by side in the work area using tabs and splitters. Documents and activities integrate with each other, enabling new workflows for interactive computing.
 
-# Create a virtual environment using conda for Pytorch
+# Create a virtual environment using conda for Pytorch and Tensorflow
 
 `conda` command is used to create, manage, and activate virtual environments. To create a virtual environment, run the following command:
 
@@ -77,6 +77,12 @@ You can install Jupyter and other packages using the following command:
 
 ```bash
 conda install jupyter matplotlib numpy pandas
+```
+
+## Install diffusion and transformers
+
+```bash
+python -m pip install -U diffusion transformers
 ```
 
 
