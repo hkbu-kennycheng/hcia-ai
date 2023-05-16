@@ -45,6 +45,8 @@ Deep Learning Frameworks are software libraries that are designed to make buildi
 
 # Create a virtual environment using conda for Pytorch and Tensorflow
 
+[![asciicast](https://asciinema.org/a/Dr1gapSfFJJLcHSobgjEjWmXP.svg)](https://asciinema.org/a/Dr1gapSfFJJLcHSobgjEjWmXP)
+
 `conda` command is used to create, manage, and activate virtual environments. To create a virtual environment, run the following command:
 
 ```bash
