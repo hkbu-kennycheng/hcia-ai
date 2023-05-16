@@ -170,6 +170,7 @@ To create a virtual environment, run the following command:
 It will create a virtual environment named `py37` with Python version 3.7.5 in home directory. To activate the virtual environment, run the following command:
 
 ```bash
+. /usr/local/Ascend/ascend-toolkit/set_env.sh
 . ~/py37/bin/activate
 ```
 
