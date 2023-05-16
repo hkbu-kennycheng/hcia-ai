@@ -87,6 +87,14 @@ conda install jupyter matplotlib numpy pandas
 python -m pip install -U diffusers==0.12.1 transformers==4.25.1 accelerate
 ```
 
+## Verify Tensorflow installation
+
+You can verify Tensorflow installation by running the following command:
+
+```bash
+python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+```
+
 
 # Setting up DataSpell
 
@@ -204,6 +212,8 @@ pip install -U jupyter matplotlib numpy pandas
 
 ## Start tmux
 
+tmux is a terminal multiplexer. It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal. To start tmux, run the following command:
+
 ```bash
 tmux
 ```
@@ -228,6 +238,8 @@ exit
 
 ## Reconnect to server with port forwarding
 
+SSH port forwarding allow us to access the Jupyter Server running on the server from local. To do this, run the following command:
+
 ```bash
 ssh -L 8888:localhost:8888 your_department_login@172.27.244.41
 ```
@@ -240,8 +252,52 @@ Please replace `8888` with the port number that your Jupyter Server running on.
 tmux attach
 ```
 
+## Verify Tensorflow installation
+
+After that we may connect to the Jupyter Server running on the server from local. To do this, open your browser and go to `http://localhost:8888`. You should see the Jupyter Notebook running on the server. You can create a new notebook and run the following code to verify the installation:
+
+```python
+tf.config.list_physical_devices()
+```
+
+You may also connect the notebook server in DataSpell. To do this, open DataSpell and click `Connect to Server` button in the status bar and enter the URL with token.
+
+## Verify mindspore installation
+
+After that we may connect to the Jupyter Server running on the server from local. To do this, open your browser and go to `http://localhost:8888`. You should see the Jupyter Notebook running on the server. You can create a new notebook and run the following code to verify the installation:
+
+```python
+import numpy as np
+import mindspore.context as context
+import mindspore.nn as nn
+from mindspore import Tensor
+from mindspore.ops import operations as P
+
+context.set_context(mode=context.GRAPH_MODE, device_target="CPU")
+
+class Mul(nn.Cell):
+    def __init__(self):
+        super(Mul, self).__init__()
+        self.mul = P.Mul()
+
+    def construct(self, x, y):
+        return self.mul(x, y)
+
+x = Tensor(np.array([1.0, 2.0, 3.0]).astype(np.float32))
+y = Tensor(np.array([4.0, 5.0, 6.0]).astype(np.float32))
+
+mul = Mul()
+print(mul(x, y))
+```
+
+To run on **Ascend AI processor**, you can change the device target to `Ascend`:
+
+```python
+context.set_context(mode=context.GRAPH_MODE, device_target="Ascend")
+```
+
 # Troubleshooting
 
-## DataSpell `updating python interpreter...`
+## DataSpell keep `updating python interpreter...`
 
-In Menu `Help` -> `Diagnostics Tool` -> ``, add `#com.jetbrains.python.sdk.PythonSdkUpdater$Trigger` as restart DataSpell
+In Menu `Help` -> `Diagnostics Tool` -> `Debug Log Setting`, add `#com.jetbrains.python.sdk.PythonSdkUpdater$Trigger` and restart DataSpell.
