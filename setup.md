@@ -82,7 +82,7 @@ conda install jupyter matplotlib numpy pandas
 ## Install diffusion and transformers
 
 ```bash
-python -m pip install -U diffusers transformers accelerate
+python -m pip install -U diffusers==0.12.1 transformers==4.25.1 accelerate
 ```
 
 
