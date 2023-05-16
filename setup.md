@@ -82,7 +82,7 @@ conda install jupyter matplotlib numpy pandas
 ## Install diffusion and transformers
 
 ```bash
-python -m pip install -U diffusion transformers
+python -m pip install -U diffusers transformers
 ```
 
 
