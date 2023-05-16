@@ -198,8 +198,8 @@ To start Jupyter Notebook Server, run the following command:
 jupyter notebook --no-browser
 ```
 
+# Troubleshooting
 
+## DataSpell `updating python interpreter...`
 
-```python
-
-```
+In Menu `Help` -> `Diagnostics Tool` -> ``, add `#com.jetbrains.python.sdk.PythonSdkUpdater$Trigger` as restart DataSpell
