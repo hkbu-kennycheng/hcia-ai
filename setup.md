@@ -65,6 +65,12 @@ After that, you can install PyTorch using the following command:
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
+## Install Tensorflow
+
+```bash
+python -m pip intall -U tensorflow
+```
+
 ## Install Jupyter and other packages
 
 You can install Jupyter and other packages using the following command:
@@ -141,7 +147,7 @@ Our department has a Huawei Ascend Server with `mindspore` support. However, it 
 You can connect to Huawei Ascend Server with SSH. You can do this by running the following command in your terminal:
 
 ```bash
-ssh your_department_login@ai01.hkbu.dev
+ssh your_department_login@172.27.244.41
 ```
 
 ## Create a virtual environment using venv
