@@ -135,6 +135,7 @@ import torch
 model_id = "runwayml/stable-diffusion-v1-5"
 pipe = StableDiffusionPipeline.from_pretrained(model_id, revision='fp16', torch_dtype=torch.bfloat16)
 pipe = pipe.to("cuda")
+pipe.safety_checker = None
 pipe.enable_attention_slicing()
 pipe.enable_sequential_cpu_offload()
 
