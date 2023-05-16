@@ -68,7 +68,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 ## Install Tensorflow
 
 ```bash
-python -m pip intall -U tensorflow
+python -m pip install -U tensorflow
 ```
 
 ## Install Jupyter and other packages
