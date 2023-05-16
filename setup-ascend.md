@@ -50,12 +50,42 @@ After that, you can install Jupyter Notebook using the following command:
 pip install -U jupyter matplotlib numpy pandas
 ```
 
+## Start tmux
+
+```bash
+tmux
+```
+
 ## Start Jupyter Notebook Server
 
 To start Jupyter Notebook Server, run the following command:
 
 ```bash
 jupyter notebook --no-browser
+```
+
+Please note the port number of the Jupyter Server running on.
+
+## Detach from tmux session
+
+Press `Ctrl+B` then `d` to detach from `tmux`. After that, we will need to disconnect from server by `exit` command.
+
+```bash
+exit
+```
+
+## Reconnect to server with port forwarding
+
+```bash
+ssh -L 8888:localhost:8888 your_department_login@172.27.244.41
+```
+
+Please replace `8888` with the port number that your Jupyter Server running on.
+
+## Reatach to previous terminal session
+
+```bash
+tmux attach
 ```
 
 # Troubleshooting
