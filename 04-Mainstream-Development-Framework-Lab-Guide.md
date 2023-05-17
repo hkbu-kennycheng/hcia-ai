@@ -8,19 +8,21 @@ This exercise introduces tensor operations of TensorFlow 2, including tensor cre
 
 ## Objectives
 
-Learn how to create tensors.
-Learn how to slice and index tensors.
-Master the syntax of tensor dimension changes.
-Master arithmetic operations of tensors.
-Know how to sort tensors.
-Understand eager execution and AutoGraph based on code.
+- Learn how to create tensors.
+- Learn how to slice and index tensors.
+- Master the syntax of tensor dimension changes.
+- Master arithmetic operations of tensors.
+- Know how to sort tensors.
+- Understand eager execution and AutoGraph based on code.
 
 ---
 
 # Introduction to Tensors
 
 In TensorFlow, tensors are classified into constant and variable tensors.
+
 A defined constant tensor has an immutable value and dimension while a defined variable tensor has a variable value and an immutable dimension.
+
 In a neural network, a variable tensor is generally used as a matrix for storing weights and other information, and is a trainable data type. A constant tensor can be used as a variable for storing hyperparameters or other structural information.
 
 ## Tensor Creation
