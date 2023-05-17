@@ -169,6 +169,15 @@ ssh your_department_login@172.27.244.41
 
 ## Create a virtual environment using venv
 
+```bash
+. /usr/local/Ascend/ascend-toolkit/set_env.sh
+export HTTP_PROXY=http://proxy.hkbu.edu.hk:8080
+export HTTPS_PROXY=http://proxy.hkbu.edu.hk:8080
+/usr/local/python3.7.5/bin/python3 -m pip install -U pip
+/usr/local/python3.7.5/bin/python3 -m pip install -U tensorflow
+/usr/local/python3.7.5/bin/python3 -m pip install -U jupyter matplotlib numpy pandas
+```
+
 [![asciicast](https://asciinema.org/a/3EN74t7SbydtVr0YRU3seBg40.svg)](https://asciinema.org/a/3EN74t7SbydtVr0YRU3seBg40)
 
 `venv` module provides support for creating lightweight “virtual environments” with their own site directories, optionally isolated from system site directories. Each virtual environment has its own Python binary (allowing creation of environments with various Python versions) and can have its own independent set of installed Python packages in its site directories.
