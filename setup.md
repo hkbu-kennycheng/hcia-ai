@@ -230,7 +230,7 @@ Please note the port number of the Jupyter Server running on.
 
 ## Detach from tmux session
 
-Press `Ctrl+B` then `d` to detach from `tmux`. After that, we will need to disconnect from server by `exit` command.
+Press `Ctrl+b` then `d` to detach from `tmux`. After that, we will need to disconnect from server by `exit` command.
 
 ```bash
 exit
