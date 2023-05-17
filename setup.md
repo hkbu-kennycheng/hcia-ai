@@ -271,6 +271,7 @@ tmux attach
 After that we may connect to the Jupyter Server running on the server from local. To do this, open your browser and go to `http://localhost:8888`. You should see the Jupyter Notebook running on the server. You can create a new notebook and run the following code to verify the installation:
 
 ```python
+import tensorflow as tf
 tf.config.list_physical_devices()
 ```
 
