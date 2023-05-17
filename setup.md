@@ -186,6 +186,11 @@ It will create a virtual environment named `py37` with Python version 3.7.5 in h
 . ~/py37/bin/activate
 ```
 
+```bash
+export HTTP_PROXY=http://proxy.hkbu.edu.hk:8080
+export HTTPS_PROXY=http://proxy.hkbu.edu.hk:8080
+```
+
 ## Upgrade pip
 
 It's recommended to upgrade pip before installing any packages in the virtual environment. To do this, you can upgrade pip using the following command:
