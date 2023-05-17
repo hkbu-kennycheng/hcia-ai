@@ -912,6 +912,7 @@ Stacked model (.Sequential) vs. functional model (.Model):The `tf.keras.Sequenti
 - Multi-output models
 - Models with shared layers
 - Models with non-sequential data flows (for example, residual connections)
+
 Code:
 
 ```python
@@ -925,7 +926,9 @@ model_sample_2 = tf.keras.models.Model(x, y)
 # Print model information.
 model_sample_2.summary()
 ```
+
 Output:
+
 ```
 Model: "model"
 _________________________________________________________________
@@ -946,6 +949,7 @@ _________________________________________________________________
 ```
 
 ### Building a Network Layer (`tf.keras.layers`)
+
 The `tf.keras.layers` module is used to configure neural network layers. Common classes include:
 - `tf.keras.layers.Dense`: builds a fully connected layer.
 - `tf.keras.layers.Conv2D`: builds a two-dimensional convolutional layer.
@@ -1195,11 +1199,14 @@ Epoch 1/10
 
 ### Callback Functions
 A callback function is an object passed to the model to customize and extend the model's behavior during training. You can customize callback functions or use embedded functions in `tf.keras.callbacks`. Common embedded callback functions include:
+
 - `tf.keras.callbacks.ModelCheckpoint`: periodically saves models.
 - `tf.keras.callbacks.LearningRateScheduler`: dynamically changes the learning rate.
 - `tf.keras.callbacks.EarlyStopping`: stops the training in advance.
 - `tf.keras.callbacks.TensorBoard`: uses the TensorBoard.
+
 Code:
+
 ```python
 import os
 # Set hyperparameters.
@@ -1220,7 +1227,6 @@ def lr_Scheduler(epoch):
         
     print(lr)
     return lr
-            
 
 callbacks = [
    # Early stopping:
@@ -1248,7 +1254,9 @@ callbacks = [
 ]
 model.fit(train_x, train_y, batch_size=16, epochs=Epochs,callbacks=callbacks, validation_data=(val_x, val_y))
 ```
+
 Output:
+
 ```
 Train on 1000 samples, validate on 200 samples
 0
@@ -1266,28 +1274,37 @@ Epoch 10/10
 
 <TensorFlow.python.keras.callbacks.History at 0x133d35438>
 ```
+
 ### Evaluation and Prediction
+
 Evaluation and prediction functions: tf.keras.Model.evaluate and tf.keras.Model.predict.
 Code:
+
 ```python
 # Model evaluation
 test_x = np.random.random((1000, 36))
 test_y = np.random.random((1000, 10))
 model.evaluate(test_x, test_y, batch_size=32)
 ```
+
 Output:
+
 ```
 1000/1000 [==============================] - 0s 45us/sample - loss: 12.2881 - categorical_accuracy: 0.0770
 [12.288104843139648, 0.077]
 ```
+
 Code:
+
 ```python
 # Model prediction
 pre_x = np.random.random((10, 36))
 result = model.predict(test_x,)
 print(result)
 ```
+
 Output:
+
 ```
 [[0.04431767 0.24562006 0.05260926 ... 0.1016549  0.13826898 0.15511878]
  [0.06296062 0.12550288 0.07593573 ... 0.06219672 0.21190381 0.12361749]
@@ -1301,6 +1318,7 @@ Output:
 ## Model Saving and Restoration
 Saving and Restoring an Entire Model
 Code:
+
 ```python
 import numpy as np
 # Save models.
@@ -1318,9 +1336,11 @@ np.testing.assert_allclose(result, new_prediction, atol=1e-6) # Prediction resul
 ```
 
 After a model is saved, you can find the corresponding weight file in the corresponding folder.
+
 Saving and Loading Network Weights Only
 If the weight name is suffixed with .h5 or .keras, save the weight as an HDF5 file; otherwise, save the weight as a TensorFlow checkpoint file by default.
 Code:
+
 ```python
 model.save_weights('./model/model_weights')
 model.save_weights('./model/model_weights.h5')
@@ -1361,6 +1381,7 @@ It also contains one label corresponding to each image to clarify the correct di
 #### MNIST Dataset Reading
 Download the MNIST dataset from the official TensorFlow website and decompress it.
 Code:
+
 ```python
 import os
 import tensorflow as tf
@@ -1381,7 +1402,9 @@ y_train = keras.utils.to_categorical(y_train_raw, num_classes)
 y_test = keras.utils.to_categorical(y_test_raw, num_classes)
 print(y_train[0])
 ```
+
 Output:
+
 ```
 5
 (60000, 28, 28) (60000,)
@@ -1392,9 +1415,12 @@ Output:
 In the MNIST dataset, the images is a tensor in the shape of `[60000, 28, 28]`. The first dimension is used to extract images, and the second and third dimensions are used to extract pixels in each image. Each element in this tensor indicates the strength of a pixel in an image. The value ranges from 0 to 255.
 The label data is converted from scalar to one-hot vectors. In a one-hot vector, one digit is 1 and digits in other dimensions are all 0s. For example, label 1 can be represented as `[0,1,0,0,0,0,0,0,0,0,0]`. Therefore, the labels are a digital matrix of `[60000, 10]`.
 ### Dataset Preprocessing and Visualization
+
 #### Data Visualization
+
 Draw the first nine images.
 Code:
+
 ```python
 plt.figure()
 for i in range(9):
@@ -1404,17 +1430,21 @@ for i in range(9):
     plt.axis('off')
 plt.show()
 ```
+
 Output:
 
 Data processing: The output of a fully connected network must be in the form of vector, instead of the matrix form of the current images. Therefore, you need to sort the images into vectors.
 Code:
+
 ```python
 # Convert a 28 x 28 image to a 784 x 1 vector.
 x_train = x_train_raw.reshape(60000, 784)
 x_test = x_test_raw.reshape(10000, 784)
 ```
+
 Currently, the dynamic range of pixels is 0 to 255. Image pixels are usually normalized to the range of 0 to 1 during processing of image pixel values.
 Code:
+
 ```python
 # Normalize image pixel values.
 x_train = x_train.astype('float32')/255
@@ -1424,6 +1454,7 @@ x_test = x_test.astype('float32')/255
 ### DNN Construction
 #### Building a DNN Model
 Code:
+
 ```python
 # Create a deep neural network (DNN) model that consists of three fully connected layers and two ReLU activation functions.
 model = keras.Sequential([ 
@@ -1434,21 +1465,27 @@ layers.Dense(num_classes, activation='softmax')])
 
 model.summary()
 ```
+
 Output:
 
 `layer.Dense()` indicates a fully connected layer, and activation indicates a used activation function.
+
 #### Compiling the DNN Model
+
 Code:
+
 ```python
 Optimizer = optimizers.Adam(0.001)
 model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=Optimizer,
               metrics=['accuracy'])
 ```
+
 In the preceding example, the loss function of the model is defined as cross entropy, and the optimization algorithm is the Adam gradient descent method.
 #### Training the DNN Model
 
 Code:
+
 ```python
 # Fit the training data to the model by using the fit method.
 model.fit(x_train, y_train,
@@ -1456,7 +1493,9 @@ model.fit(x_train, y_train,
           epochs=10,
           verbose=1)
 ```
+
 Output:
+
 ```
 Epoch 1/10
 60000/60000 [==============================] - 7s 114us/sample - loss: 0.2281 - acc: 0.9327s - loss: 0.2594 - acc: 0. - ETA: 1s - loss: 0.2535 - acc: 0.9 - ETA: 1s - loss:
@@ -1479,23 +1518,29 @@ Epoch 9/10
 Epoch 10/10
 60000/60000 [==============================] - ETA: 0s - loss: 0.0149 - acc: 0.994 - 7s 117us/sample - loss: 0.0148 - acc: 0.9948
 ```
+
 epoch indicates a specific round of training. In the preceding example, full data is iterated for 10 times.
 
 #### Evaluating the DNN Model
 Code:
+
 ```python
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 ```
+
 Output:
+
 ```
 Test loss: 0.48341113169193267
 Test accuracy: 0.8765
 ```
+
 According to the evaluation, the model accuracy is 0.87 after 10 model training iterations.
 Saving the DNN Model
 Code:
+
 ```python
 logdir='./mnist_model'
 if not os.path.exists(logdir):
@@ -1505,8 +1550,9 @@ model.save(logdir+'/final_DNN_model.h5')
 
 ### CNN Construction
 The conventional CNN construction method helps you better understand the internal network structure but requires a large code volume. Therefore, attempts to construct a CNN by using high-level APIs are made to simplify the network construction process.
-Building a CNN Model
+### Building a CNN Model
 Code:
+
 ```python
 import tensorflow as tf
 from tensorflow import keras
@@ -1533,6 +1579,7 @@ In the preceding network, two convolutional layers and pooling layers are first 
 
 #### Compiling and Training the CNN Model
 Code:
+
 ```python
 # Expand data dimensions to adapt to the CNN model.
 X_train=x_train.reshape(60000,28,28,1)
@@ -1540,7 +1587,9 @@ X_test=x_test.reshape(10000,28,28,1)
 model.compile(optimizer="adam",loss="categorical_crossentropy",metrics=['accuracy']) 
 model.fit(x=X_train,y=y_train,epochs=5,batch_size=128)
 ```
+
 Output:
+
 ```
 Epoch 1/5
 55000/55000 [==============================] - 49s 899us/sample - loss: 0.2107 - acc: 0.9348
@@ -1559,19 +1608,25 @@ Epoch 5/5
 During training, the network training data is iterated for only five times. You can increase the number of network iterations to check the effect.
 
 #### Evaluating the CNN Model
+
 Code:
+
 ```python
 test_loss,test_acc=model.evaluate(x=X_test,y=y_test)
 print("Test Accuracy %.2f"%test_acc)
 ```
+
 Output:
+
 ```
 10000/10000 [==============================] - 2s 185us/sample - loss: 0.0239 - acc: 0.9921
 Test Accuracy 0.99
 ```
+
 The evaluation shows that the accuracy of the CNN model reaches up to 99%.
 #### Saving the CNN Model
 Code:
+
 ```python
 logdir='./mnist_model'
 if not os.path.exists(logdir):
@@ -1582,12 +1637,15 @@ model.save(logdir+'/final_CNN_model.h5')
 ### Prediction Result Visualization
 #### Loading the CNN Model
 Code:
+
 ```python
 from tensorflow.keras.models import load_model
 new_model = load_model('./mnist_model/final_CNN_model.h5')
 new_model.summary()
 ```
+
 Output:
+
 ```
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
@@ -1615,8 +1673,10 @@ Trainable params: 422,154
 Non-trainable params: 0
 _________________________________________________________________
 ```
+
 Visualize the prediction results.
 Code:
+
 ```python
 # Visualize the test dataset output.
 import matplotlib.pyplot as plt
@@ -1638,7 +1698,9 @@ def res_Visual(n):
     print('first {} images in the test dataset are in the following format:'.format(n))
 res_Visual(20)
 ```
+
 Output:
+
 ```
 Prediction results of the first 20 images:
 7,2,1,0,4, 
@@ -1661,7 +1723,9 @@ Upon completion of this exercise, you will be able to:
 - Learn how to use the checkpoint function.
 - Learn how to use a trained model to make predictions.
 ## Tasks
+
 ### Importing Dependencies
+
 ```python
 import tensorflow as tf
 from tensorflow import keras
@@ -1671,8 +1735,11 @@ import  os
 import numpy as np
 import matplotlib.pyplot as plt
 ```
+
 ### Preprocessing Data
+
 Code:
+
 ```python
 # Download the dataset.
 (x_train,y_train), (x_test, y_test) = datasets.cifar10.load_data()
@@ -1686,7 +1753,9 @@ y_train_onehot = keras.utils.to_categorical(y_train, num_classes)
 y_test_onehot = keras.utils.to_categorical(y_test, num_classes)
 y_train[0]
 ```
+
 Output:
+
 ```
 (50000, 32, 32, 3) (50000, 1) (10000, 32, 32, 3) (10000, 1)
 [6]
@@ -1695,7 +1764,9 @@ array([0., 0., 0., 0., 0., 0., 1., 0., 0., 0.], dtype=float32)
 ```
 
 Display nine sample images.
+
 Code:
+
 ```python
 # Generate an image label list.
 category_dict = {0:'airplane',1:'automobile',2:'bird',3:'cat',4:'deer',5:'dog',
@@ -1713,6 +1784,7 @@ Output:
 
 First nine images and their labels
 Code:
+
 ```python
 # Pixel normalization
 x_train = x_train.astype('float32')/255
@@ -1755,10 +1827,13 @@ return model
 model=CNN_classification_model()
 model.summary()
 ```
+
 Output:
 
 ### Training the Model
+
 Code:
+
 ```python
 from tensorflow.keras.callbacks import ModelCheckpoint
 model_name = "final_cifar10.h5"
@@ -1771,46 +1846,61 @@ if os.path.exists(trained_weights_path):
 # Training
 model.fit(x_train,y_train, batch_size=32, epochs=10,callbacks = [model_checkpoint],verbose=1)
 ```
+
 Output:
 
 This exercise is performed on a laptop. The network in this exercise is simple, consisting of four convolutional layers. To improve the performance of this model, you can increase the number of epochs and the complexity of the model.
 
 ### Evaluating the Model
 Code:
+
 ```python
 new_model = CNN_classification_model()
 new_model.load_weights('final_cifar10.h5')
 
 model.evaluate(x_test, y_test, verbose=1)
 ```
+
 Output:
+
 ```
 10000/10000 [==============================] - 13s 1ms/sample - loss: 0.8581 - accuracy: 0.7042s - loss: 0.854
 [0.8581173644065857, 0.7042]
 ```
+
 ### Predict an image.
+
 Code:
+
 ```python
 # Output the possibility of each class.
 new_model.predict(x_test[0:1])
 ```
+
 Output:
+
 ```
 array([[2.3494475e-03, 6.9919275e-05, 8.1065837e-03, 7.8556609e-01,
         2.3783690e-03, 1.8864134e-01, 6.8611270e-03, 1.2157968e-03,
         4.3428279e-03, 4.6843957e-04]], dtype=float32)
 ```
+
 Code:
+
 ```python
 # Output the prediction result.
 new_model.predict_classes(x_test[0:1])
 ```
+
 Output:
+
 ```
 array([3])
 ```
+
 Output the first four images and their prediction results.
 Code:
+
 ```python
 pred_list = []
 
