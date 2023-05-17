@@ -913,6 +913,7 @@ Stacked model (.Sequential) vs. functional model (.Model):The `tf.keras.Sequenti
 - Models with shared layers
 - Models with non-sequential data flows (for example, residual connections)
 Code:
+
 ```python
 # Use the output of the current layer as the input of the next layer.
 x = tf.keras.Input(shape=(32,))
