@@ -944,6 +944,7 @@ Trainable params: 2,442
 Non-trainable params: 0
 _________________________________________________________________
 ```
+
 ### Building a Network Layer (`tf.keras.layers`)
 The `tf.keras.layers` module is used to configure neural network layers. Common classes include:
 - `tf.keras.layers.Dense`: builds a fully connected layer.
@@ -959,7 +960,9 @@ The main network configuration parameters in `tf.keras.layers` include:
 - `activation`: sets the activation function of a layer. By default, the system does not use any activation functions.
 - `kernel_initializer` and `bias_initializer`: initialization schemes that create a layer's weights (kernel and bias). This defaults to the Glorot uniform initializer.
 - `kernel_regularizer` and `bias_regularizer`: regularization schemes that apply to a layer's weights (kernel and bias), for example, L1 or L2 regularization. By default, the system does not use regularization functions.
+
 #### `tf.keras.layers.Dense`
+
 Main configuration parameters in `tf.keras.layers.Dense` include:
 - `units`: number of neurons
 - `activation`: activation function
@@ -971,7 +974,9 @@ Main configuration parameters in `tf.keras.layers.Dense` include:
 - `activity_regularizer`: regular item applied to the output, a Regularizer object
 - `kernel_constraint`: constraint applied to a weight
 - `bias_constraint`: constraint applied to a weight
+
 Code:
+
 ```python
 # Create a fully connected layer that contains 32 neurons and set the activation function to sigmoid.
 # The activation parameter can be set to a function name string, for example, sigmoid, or a function object, for example, tf.sigmoid.
@@ -983,11 +988,15 @@ layers.Dense(32, kernel_initializer=tf.keras.initializers.he_normal)
 # Set kernel_regularizer to the L2 regularization.
 layers.Dense(32, kernel_regularizer=tf.keras.regularizers.l2(0.01))
 ```
+
 Output:
+
 ```
 <TensorFlow.python.keras.layers.core.Dense at 0x130c519e8>
 ```
+
 #### `tf.keras.layers.Conv2D`
+
 Main configuration parameters in `tf.keras.layers.Conv2D` include:
 - `filters`: number of convolution kernels (output dimensions)
 - `kernel_size`: width and length of a convolution kernel
@@ -997,15 +1006,20 @@ Main configuration parameters in `tf.keras.layers.Conv2D` include:
 - `activation`: activation function
 - `data_format`: data format. The value can be `channels_first` or `channels_last`. For example, for a 128 x 128 RGB image, data is organized as `(3,128,128)` if the value is `channels_first`, and as `(128,128,3)` if the value is `channels_last`. The default value of this parameter is the value defined in `~/.keras/keras.json`. If the value has never been set, the default value is `channels_last`.
 Other parameters include `use_bias`, `kernel_initializer`, `bias_initializer`, `kernel_regularizer`, `bias_regularizer`, `activity_regularizer`, `kernel_constraints`, and `bias_constraints`.
+
 Code:
+
 ```python
 layers.Conv2D(64,[1,1],2,padding='same',activation="relu")
 ```
+
 Output:
 ```
 <TensorFlow.python.keras.layers.convolutional.Conv2D at 0x106c510f0>
 ```
+
 #### `tf.keras.layers.MaxPooling2D/AveragePooling2D`
+
 Main configuration parameters in tf.keras.layers.MaxPooling2D/AveragePooling2D include:
 - `pool_size`: size of the pooled kernel. For example, if the matrix `(2, 2)` is used, the image becomes half of the original length in both dimensions. If this parameter is set to an integer, the integer is the value of all dimensions.
 - `strides`: stride value.
@@ -1016,11 +1030,15 @@ Code:
 ```python
 layers.MaxPooling2D(pool_size=(2,2),strides=(2,1))
 ```
+
 Output:
+
 ```
 <TensorFlow.python.keras.layers.pooling.MaxPooling2D at 0x132ce1f98>
 ```
+
 #### `tf.keras.layers.LSTM/tf.keras.layers.LSTMCell`
+
 Main configuration parameters in `tf.keras.layers.LSTM`/`tf.keras.layers.LSTMCell` include:
 - `units`: output dimension
 - `input_shape` `(timestep, input_dim)`: `timestep` can be set to None, and `input_dim` indicates the input data dimensions.
@@ -1030,7 +1048,9 @@ Main configuration parameters in `tf.keras.layers.LSTM`/`tf.keras.layers.LSTMCel
 - `return_state`: Boolean value, indicating whether to return the last state in addition to the output.
 - `dropout`: float between 0 and 1, fraction of the neurons to drop for the linear transformation of the inputs
 - `recurrent_dropout`: float between 0 and 1, fraction of the neurons to drop for the linear transformation of the recurrent state
+
 Code:
+
 ```python
 import numpy as np
 inputs = tf.keras.Input(shape=(3, 1))
@@ -1049,7 +1069,9 @@ print(data)
 print("Output when return_sequences is set to True",model_lstm_1.predict(data))
 print("Output when return_sequences is set to False",model_lstm_2.predict(data))
 ```
+
 Output:
+
 ```
 [[[0.1], [0.2], [0.3]]]
 Output when return_sequences is set to True: [[[-0.0106758 ]
@@ -1057,9 +1079,11 @@ Output when return_sequences is set to True: [[[-0.0106758 ]
   [-0.04583194]]]
 Output when return_sequences is set to False: [[0.05914127]]
 ```
-LSTMcell is the implementation unit of the LSTM layer.
-- LSTM is an LSTM network layer.
-- LSTMCell is a single-step computing unit, that is, an LSTM unit.
+
+`LSTMcell` is the implementation unit of the LSTM layer.
+- `LSTM` is an LSTM network layer.
+- `LSTMCell` is a single-step computing unit, that is, an LSTM unit.
+
 ```python
 #LSTM
 tf.keras.layers.LSTM(16, return_sequences=True)
@@ -1067,11 +1091,13 @@ tf.keras.layers.LSTM(16, return_sequences=True)
 #LSTMCell
 x = tf.keras.Input((None, 3))
 y = layers.RNN(layers.LSTMCell(16))(x)
-model_lstm_3= tf.keras.Model(x, y)
+model_lstm_3 = tf.keras.Model(x, y)
 ```
 
 ## Training and Evaluation
+
 ### Model Compilation
+
 After a model has been built, call compile to configure its learning process:
 - `compile( optimizer='rmsprop', loss=None, metrics=None, loss_weights=None)`:
     - `optimizer`: optimizer
@@ -1079,6 +1105,7 @@ After a model has been built, call compile to configure its learning process:
     - `metrics`: model evaluation criteria during training and testing. For example, metrics can be set to ['accuracy']. To specify multiple evaluation criteria, transfer a dictionary. For example, set metrics to {'output_a':'accuracy'}.
     `loss_weights`: If the model has multiple task outputs, you need to specify a weight for each output when optimizing the global loss.
 Code:
+
 ```python
 model = tf.keras.Sequential()
 model.add(layers.Dense(10, activation='softmax'))
@@ -1089,7 +1116,9 @@ model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
 ```
 
 ### Model Training
+
 `fit(x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=True, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None)`:
+
 - `x`: input training data
 - `y`: target (labeled) data
 - `batch_size`: number of samples for each gradient update. The default value 32.
@@ -1104,8 +1133,10 @@ model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
 - `shuffle`: whether to shuffle data before each round of iteration. This parameter is invalid when steps_per_epoch is not None.
 - `initial_epoch`: epoch at which to start training (useful for resuming a previous training weight)
 - `steps_per_epoch`: set to the dataset size or batch_size
-- `validation_steps`: Total number of steps (batches of samples) to be validated before stopping. This parameter is valid only when `steps_per_epoch` is specified.  
+- `validation_steps`: Total number of steps (batches of samples) to be validated before stopping. This parameter is valid only when `steps_per_epoch` is specified. 
+
 Code:
+
 ```python
 import numpy as np
 
@@ -1118,7 +1149,9 @@ val_y = np.random.random((200, 10))
 model.fit(train_x, train_y, epochs=10, batch_size=100,
           validation_data=(val_x, val_y))
 ```
+
 Output:
+
 ```
 Train on 1000 samples, validate on 200 samples
 Epoch 1/10
@@ -1133,6 +1166,7 @@ Epoch 10/10
 
 <TensorFlow.python.keras.callbacks.History at 0x130ab5518>
 ```
+
 For large datasets, you can use `tf.data` to build training input pipelines.
 Code:
 
@@ -1147,7 +1181,9 @@ val_dataset = val_dataset.repeat()
 model.fit(dataset, epochs=10, steps_per_epoch=30,
           validation_data=val_dataset, validation_steps=3)
 ```
+
 Output:
+
 ```
 Train for 30 steps, validate for 3 steps
 Epoch 1/10
@@ -1156,6 +1192,7 @@ Epoch 1/10
 30/30 [==============================] - 0s 2ms/step - loss: 12.5797 - categorical_accuracy: 0.0951 - val_loss: 12.3067 - val_categorical_accuracy: 0.0833
 <TensorFlow.python.keras.callbacks.History at 0x132ab48d0>
 ```
+
 ### Callback Functions
 A callback function is an object passed to the model to customize and extend the model's behavior during training. You can customize callback functions or use embedded functions in `tf.keras.callbacks`. Common embedded callback functions include:
 - `tf.keras.callbacks.ModelCheckpoint`: periodically saves models.
