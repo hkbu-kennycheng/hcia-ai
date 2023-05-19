@@ -5,3 +5,4 @@
 - [Setup](https://hcia-ai.hkbu.dev/setup)
 - [02 Machine Learning Experiment Guide](https://hcia-ai.hkbu.dev/02-Machine-Learning-Experiment-Guide.html)
 - [04 Mainstream Development Framework Lab Guide](https://hcia-ai.hkbu.dev/04)
+- [05 Huawei AI Computing Framework MindSpore Lab Guide](https://hcia-ai.hkbu.dev/05)
