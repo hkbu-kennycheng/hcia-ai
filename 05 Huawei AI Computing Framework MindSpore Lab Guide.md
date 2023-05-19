@@ -1,22 +1,22 @@
 
 # Contents
-1. MindSpore Basics  \h 5
-    1. Introduction 377 \h 5
-        1. About This Exersie 378 \h 5
-        2. Objectives 379 \h 5
-        3. Lab Environment 380 \h 5
-    2. Procedure 381 \h 5
-        1. Introduction to Tensors 382 \h 5
-        2. Loading a Dataset 383 \h 9
-        3. Building the Network 384 \h 13
-        4. Training and Validating a Model 385 \h 16
-        5. Auto Differentiation 386 \h 18
-2 MNIST Handwritten Character Exercise 387 \h 20
-    2.1 Introduction 388 \h 20
-    2.2 Preparations 389 \h 20
-    2.3 Detailed Design and Implementation 390 \h 20
-        2.3.1 Data Preparation 391 \h 20
-        2.3.2 Procedure 392 \h 21
+1. MindSpore Basics
+    1. Introduction
+        1. About This Exersie
+        2. Objectives
+        3. Lab Environment
+    2. Procedure
+        1. Introduction to Tensors
+        2. Loading a Dataset 
+        3. Building the Network 
+        4. Training and Validating a Model
+        5. Auto Differentiation
+2. MNIST Handwritten Character Exercise 
+    1. Introduction
+    2. Preparations
+    3. Detailed Design and Implementation
+        1. Data Preparation
+        2. Procedure 392
 
 ---
 
